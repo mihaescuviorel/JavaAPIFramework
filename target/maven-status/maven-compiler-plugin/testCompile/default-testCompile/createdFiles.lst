@@ -1,0 +1,7 @@
+api\test\UserTests.class
+api\utilities\ExtentReportManager.class
+api\utilities\DataProviders.class
+api\test\DDTests2.class
+api\endpoints\UserEndPointsCRUD2.class
+api\payload\User.class
+api\utilities\XLUtility.class

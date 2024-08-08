@@ -1,0 +1,14 @@
+1. download apache maven and add it to environment variables
+2. add java to environmnet variables
+3. run from cmd using mvn test
+4. install git software
+    - git init to create local repository
+    - git config --global user.email "
+    - git config --global user.name "
+    - git add . to add all files to staging area
+    - git commit -m "message" to commit code to local repository
+    - git remote add origin
+    - git push -u origin master
+5. commit code in local repository git
+6. push code to remote repository git
+7. run project in jenkins
