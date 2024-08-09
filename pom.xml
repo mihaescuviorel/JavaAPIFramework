@@ -30,14 +30,20 @@
                 </plugin>
 
                 <!-- Maven Compiler Plugin for compiling project source code -->
+
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>3.8.1</version>
                     <configuration>
-                        <!-- Specify the Java version to use for compiling -->
                         <source>11</source>
                         <target>11</target>
+                        <compilerArgs>
+                            <arg>--add-opens</arg>
+                            <arg>jdk.compiler/com.sun.tools.javac.processing=ALL-UNNAMED</arg>
+                            <arg>--add-opens</arg>
+                            <arg>jdk.compiler/com.sun.tools.javac.comp=ALL-UNNAMED</arg>
+                        </compilerArgs>
                     </configuration>
                 </plugin>
 

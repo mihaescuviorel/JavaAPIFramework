@@ -1,4 +1,11 @@
 -------------------------------------------------------------------------------
 Test set: TestSuite
 -------------------------------------------------------------------------------
-Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 11.08 s - in TestSuite
+Tests run: 4, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 12.441 s <<< FAILURE! - in TestSuite
+api.test.DDTests.deleteUser[testuser1](1)  Time elapsed: 0.819 s  <<< FAILURE!
+java.lang.AssertionError: 
+1 expectation failed.
+Expected status code <200> but was <404>.
+
+	at api.test.DDTests.deleteUser(DDTests.java:59)
+

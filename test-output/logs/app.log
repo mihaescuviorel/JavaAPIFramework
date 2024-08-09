@@ -69,3 +69,10 @@
 10:27:43.832 [main] INFO  api.test.DDTests - ********** User deleted successfully **********
 10:27:43.837 [main] INFO  api.test.DDTests - ********** Deleting a user **********
 10:27:44.550 [main] INFO  api.test.DDTests - ********** User deleted successfully **********
+12:19:59.660 [main] INFO  api.test.DDTests - ********** Creating a new user **********
+12:20:04.442 [main] INFO  api.test.DDTests - ********** User created successfully **********
+12:20:04.556 [main] INFO  api.test.DDTests - ********** Creating a new user **********
+12:20:05.348 [main] INFO  api.test.DDTests - ********** User created successfully **********
+12:20:05.417 [main] INFO  api.test.DDTests - ********** Deleting a user **********
+12:20:06.229 [main] INFO  api.test.DDTests - ********** Deleting a user **********
+12:20:07.013 [main] INFO  api.test.DDTests - ********** User deleted successfully **********
