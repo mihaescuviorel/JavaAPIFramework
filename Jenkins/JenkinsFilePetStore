@@ -1,0 +1,35 @@
+pipeline{
+
+    agent any
+
+    stages{
+        stage("Clean Up"){
+            steps{
+               deleteDir() // This will delete the workspace before the build starts, because we want to start fresh
+            }
+        }
+
+        stage("Clone the Repository"){
+            steps{
+                sh "git clone https://github.com/mihaescuviorel/JavaAPIFramework.git"
+            }
+        }
+
+        stage("Build the Project"){
+            steps{
+                dir("JavaAPIFramework"){
+                    sh "mvn clean install"
+                }
+            }
+        }
+
+        stage("Test the Project"){
+            steps{
+                dir("JavaAPIFramework"){
+                    sh "mvn test"
+                }
+            }
+        }
+
+    }
+}
