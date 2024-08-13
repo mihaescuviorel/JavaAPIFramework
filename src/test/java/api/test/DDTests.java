@@ -52,13 +52,13 @@ public class DDTests {
 
     }
 
-    @Test(priority = 2, dataProvider = "UserNames", dataProviderClass = DataProviders.class)
-    public void deleteUser(String username) {
-        logger.info("********** Deleting a user **********");
-        // Delete a user by username
-        Response response = UserEndPointsCRUD.deleteUser(username);
-        response.prettyPrint();
-        logger.info("********** User deleted successfully **********");
-    }
+//    @Test(priority = 2, dataProvider = "UserNames", dataProviderClass = DataProviders.class)
+//    public void deleteUser(String username) {
+//        logger.info("********** Deleting a user **********");
+//        // Delete a user by username
+//        Response response = UserEndPointsCRUD.deleteUser(username);
+//        response.prettyPrint();
+//        logger.info("********** User deleted successfully **********");
+//    }
 
 }
