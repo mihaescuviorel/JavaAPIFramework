@@ -2,39 +2,38 @@ pipeline {
     agent any
 
     stages {
-        stage("Clean Up") {
+        stage('Clean Up') {
             steps {
-                deleteDir() // This will delete the workspace before the build starts, because we want to start fresh
+                echo 'Cleaning workspace...'
+                deleteDir()
+                sh 'ls -al' // List files to verify cleanup
             }
         }
 
-        stage("Clone the Repository") {
+        stage('Clone Repository') {
             steps {
+                echo 'Cloning repository...'
+                sh 'ls -al' // List files before cloning
                 sh 'git clone https://github.com/mihaescuviorel/JavaAPIFramework.git'
+                sh 'ls -al JavaAPIFramework' // List files after cloning
             }
         }
 
-        stage("Build the Project") {
+        stage('Build') {
             steps {
                 dir('JavaAPIFramework') {
+                    echo 'Building the project...'
+                    sh 'mvn -v' // Print Maven version
                     sh 'mvn clean install'
                 }
             }
         }
 
-        stage("Test the Project") {
+        stage('Test') {
             steps {
                 dir('JavaAPIFramework') {
+                    echo 'Running tests...'
                     sh 'mvn test'
-                }
-            }
-        }
-
-        stage("Archive Reports") {
-            steps {
-                dir('JavaAPIFramework') {
-                    // Archive the HTML reports generated in the test-output/reports directory
-                    archiveArtifacts artifacts: 'test-output/reports/*.html', allowEmptyArchive: true
                 }
             }
         }
@@ -42,15 +41,7 @@ pipeline {
 
     post {
         always {
-            // Publish HTML reports using the HTML Publisher Plugin
-            publishHTML([
-                allowMissing: false,
-                alwaysLinkToLastBuild: true,
-                keepAll: true,
-                reportDir: 'JavaAPIFramework/test-output/reports', // Directory where HTML reports are located
-                reportFiles: 'index.html', // Change this if your HTML report file has a different name
-                reportTitles: 'Test Report'
-            ])
+            echo 'Build finished.'
         }
     }
 }
