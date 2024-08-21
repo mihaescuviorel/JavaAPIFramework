@@ -1,70 +1,35 @@
-pipeline {
+pipeline{
+
     agent any
 
-    stages {
-        stage('Clean Up') {
-            steps {
-                echo 'Cleaning workspace...'
-                deleteDir()
-                sh 'ls -al' // List files to verify cleanup
+    stages{
+        stage("Clean Up"){
+            steps{
+               deleteDir() // This will delete the workspace before the build starts, because we want to start fresh
             }
         }
 
-        stage('Clone Repository') {
-            steps {
-                echo 'Cloning repository...'
-                sh 'ls -al' // List files before cloning
-                sh 'git clone https://github.com/mihaescuviorel/JavaAPIFramework.git'
-                sh 'ls -al JavaAPIFramework' // List files after cloning
+        stage("Clone the Repository"){
+            steps{
+                sh "git clone https://github.com/mihaescuviorel/JavaAPIFramework.git"
             }
         }
 
-        stage('Build') {
-            steps {
-                dir('JavaAPIFramework') {
-                    echo 'Building the project...'
-                    sh 'mvn -v' // Print Maven version
-                    sh 'mvn clean install'
+        stage("Build the Project"){
+            steps{
+                dir("JavaAPIFramework"){
+                    sh "mvn clean install"
                 }
             }
         }
 
-        stage('Test') {
-            steps {
-                dir('JavaAPIFramework') {
-                    echo 'Running tests...'
-                    sh 'mvn test'
+        stage("Test the Project"){
+            steps{
+                dir("JavaAPIFramework"){
+                    sh "mvn test"
                 }
             }
         }
 
-        stage('Clean Reports Directory') {
-            steps {
-                dir('JavaAPIFramework') {
-                    echo 'Cleaning old reports...'
-                    // Remove old report files before archiving new ones
-                    sh 'rm -rf test-output/reports/* || true'
-                    sh 'ls -al test-output/reports' // List files to verify cleanup
-                }
-            }
-        }
-
-        stage('Archive Reports') {
-            steps {
-                dir('JavaAPIFramework') {
-                    echo 'Archiving HTML reports...'
-                    sh 'ls -al test-output/reports' // List files in the reports directory
-                    archiveArtifacts artifacts: 'test-output/reports/*.html', allowEmptyArchive: true
-                    // List files again to ensure they are the same before and after archiving
-                    sh 'ls -al test-output/reports'
-                }
-            }
-        }
-    }
-
-    post {
-        always {
-            echo 'Build finished.'
-        }
     }
 }
