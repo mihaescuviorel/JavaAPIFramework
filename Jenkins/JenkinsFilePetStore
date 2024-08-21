@@ -38,12 +38,25 @@ pipeline {
             }
         }
 
+        stage('Clean Reports Directory') {
+            steps {
+                dir('JavaAPIFramework') {
+                    echo 'Cleaning old reports...'
+                    // Remove old report files before archiving new ones
+                    sh 'rm -rf test-output/reports/* || true'
+                    sh 'ls -al test-output/reports' // List files to verify cleanup
+                }
+            }
+        }
+
         stage('Archive Reports') {
             steps {
                 dir('JavaAPIFramework') {
                     echo 'Archiving HTML reports...'
                     sh 'ls -al test-output/reports' // List files in the reports directory
                     archiveArtifacts artifacts: 'test-output/reports/*.html', allowEmptyArchive: true
+                    // List files again to ensure they are the same before and after archiving
+                    sh 'ls -al test-output/reports'
                 }
             }
         }
