@@ -1,35 +1,56 @@
-pipeline{
-
+pipeline {
     agent any
 
-    stages{
-        stage("Clean Up"){
-            steps{
-               deleteDir() // This will delete the workspace before the build starts, because we want to start fresh
+    stages {
+        stage('Clean Up') {
+            steps {
+                deleteDir() // This will delete the workspace before the build starts, because we want to start fresh
             }
         }
 
-        stage("Clone the Repository"){
-            steps{
-                sh "git clone https://github.com/mihaescuviorel/JavaAPIFramework.git"
+        stage('Clone the Repository') {
+            steps {
+                sh 'git clone https://github.com/mihaescuviorel/JavaAPIFramework.git'
             }
         }
 
-        stage("Build the Project"){
-            steps{
-                dir("JavaAPIFramework"){
-                    sh "mvn clean install"
+        stage('Build the Project') {
+            steps {
+                dir('JavaAPIFramework') {
+                    sh 'mvn clean install'
                 }
             }
         }
 
-        stage("Test the Project"){
-            steps{
-                dir("JavaAPIFramework"){
-                    sh "mvn test"
+        stage('Test the Project') {
+            steps {
+                dir('JavaAPIFramework') {
+                    sh 'mvn test'
                 }
             }
         }
 
+        stage('Archive Reports') {
+            steps {
+                dir('JavaAPIFramework') {
+                    // Archive the HTML reports generated in the test-output/reports directory
+                    archiveArtifacts artifacts: 'test-output/reports/*.html', allowEmptyArchive: true
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            // Publish HTML reports using the HTML Publisher Plugin
+            publishHTML([
+                allowMissing: false,
+                alwaysLinkToLastBuild: true,
+                keepAll: true,
+                reportDir: 'JavaAPIFramework/test-output/reports', // Directory where HTML reports are located
+                reportFiles: 'index.html', // Change this if your HTML report file has a different name
+                reportTitles: 'Test Report'
+            ])
+        }
     }
 }
