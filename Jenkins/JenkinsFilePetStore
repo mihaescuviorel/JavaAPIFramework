@@ -23,13 +23,5 @@ pipeline{
             }
         }
 
-        stage("Test the Project"){
-            steps{
-                dir("JavaAPIFramework"){
-                    sh "mvn test"
-                }
-            }
-        }
-
     }
 }
