@@ -150,3 +150,19 @@
 11:08:27.061 [main] INFO  api.test.DDTests - ********** User deleted successfully **********
 11:08:27.066 [main] INFO  api.test.DDTests - ********** Deleting a user **********
 11:08:27.741 [main] INFO  api.test.DDTests - ********** User deleted successfully **********
+13:56:30.227 [main] INFO  api.test.DDTests - ********** Creating a new user **********
+13:56:42.077 [main] INFO  api.test.DDTests - ********** User created successfully **********
+13:56:42.089 [main] INFO  api.test.DDTests - ********** Creating a new user **********
+13:56:42.946 [main] INFO  api.test.DDTests - ********** User created successfully **********
+13:56:43.085 [main] INFO  api.test.DDTests - ********** Deleting a user **********
+13:56:43.989 [main] INFO  api.test.DDTests - ********** User deleted successfully **********
+13:56:43.991 [main] INFO  api.test.DDTests - ********** Deleting a user **********
+13:56:44.761 [main] INFO  api.test.DDTests - ********** User deleted successfully **********
+13:58:10.678 [main] INFO  api.test.DDTests - ********** Creating a new user **********
+13:58:22.425 [main] INFO  api.test.DDTests - ********** User created successfully **********
+13:58:22.643 [main] INFO  api.test.DDTests - ********** Creating a new user **********
+13:58:23.607 [main] INFO  api.test.DDTests - ********** User created successfully **********
+13:58:23.743 [main] INFO  api.test.DDTests - ********** Deleting a user **********
+13:58:24.513 [main] INFO  api.test.DDTests - ********** User deleted successfully **********
+13:58:24.517 [main] INFO  api.test.DDTests - ********** Deleting a user **********
+13:58:25.225 [main] INFO  api.test.DDTests - ********** User deleted successfully **********
